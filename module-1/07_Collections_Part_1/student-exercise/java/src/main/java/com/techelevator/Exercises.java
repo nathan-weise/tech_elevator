@@ -1,6 +1,8 @@
 package com.techelevator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Exercises {
@@ -16,7 +18,8 @@ public class Exercises {
 	 array2List( {"Left", "Right", "Forward", "Back"} )  ->  ["Left", "Right", "Forward", "Back"]
 	 */
 	public List<String> array2List(String[] stringArray) {
-		return null;
+		List<String> copy = new ArrayList<>(Arrays.asList(stringArray));
+		return copy;
 	}
 
 	/*
@@ -26,7 +29,8 @@ public class Exercises {
 	 list2Array( ["Left", "Right", "Forward", "Back"] )  ->  {"Left", "Right", "Forward", "Back"}
 	 */
 	public String[] list2Array(List<String> stringList) {
-		return null;
+		String[] copy = stringList.toArray(new String[0]);
+		return copy;
 	}
 
 	/*
@@ -37,7 +41,14 @@ public class Exercises {
 	 no4LetterWords( {"Jack", "Jill", "Jane", "John", "Jim"} )  ->  ["Jim"]
 	 */
 	public List<String> no4LetterWords(String[] stringArray) {
-		return null;
+		ArrayList<String> list = new ArrayList<>();
+
+		for (int i = 0; i < stringArray.length; i++) {
+			if (stringArray[i].length() != 4) {
+				list.add(stringArray[i]);
+			}
+		}
+		return list;
 	}
 
 	/*
@@ -47,6 +58,8 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
+
+
 		return null;
 	}
 
@@ -57,7 +70,7 @@ public class Exercises {
 	 findLargest( [34070, 1380, 81238, 7782, 234, 64362, 627] ) -> 64362
 	 */
 	public Integer findLargest(List<Integer> integerList) {
-		return null;
+		return Collections.max(integerList);
 	}
 
 	/*
@@ -67,6 +80,7 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
+
 		return null;
 	}
 
@@ -78,8 +92,14 @@ public class Exercises {
 	 foundIntTwice( [9, 23, 44, 2, 88, 44], 44) -> true
 	 */
 	public boolean foundIntTwice(List<Integer> integerList, int intToFind) {
+		int firstInstance = integerList.indexOf(intToFind);
+		int lastInstance = integerList.lastIndexOf(intToFind);
+
+		if (firstInstance != lastInstance) {
+			return true;
+		}
 		return false;
-	}
+		}
 
 	/*
 	 Given an array of Integers, return a List that contains the same Integers (as Strings). Except any multiple of 3
@@ -95,6 +115,8 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
+
+
 		return null;
 	}
 
