@@ -50,8 +50,8 @@ public class Lecture {
 
     //9. addBonus({"Player 1"=5000,"Player 2"=2500,"Player 3"=4500}, 500)
     //         -> {"Player 1"=5500,"Player 2"=3000,"Player 3"=5000}
-    public Map<String,Integer> addBonus(Map<String,Integer> scores, int bonus) {
-        return null;
+    public void addBonus(Map<String,Integer> scores, int bonus) {
+
     }
 
 }

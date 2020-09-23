@@ -79,16 +79,16 @@ public class LectureTest {
 
     @Test
     public void test9_addBonus() {
-        Map<String,Integer> input = new HashMap<>();
-        input.put("a", 100);
-        input.put("b", 200);
-        input.put("c", 300);
-        input.put("d", 1000);
-        Map<String,Integer> output = sut.addBonus(input, 100);
-        assertEquals(Integer.valueOf(200), output.get("a"));
-        assertEquals(Integer.valueOf(300), output.get("b"));
-        assertEquals(Integer.valueOf(400), output.get("c"));
-        assertEquals(Integer.valueOf(1100), output.get("d"));
-        assertEquals(4, output.size());
+        Map<String,Integer> scores = new HashMap<>();
+        scores.put("a", 100);
+        scores.put("b", 200);
+        scores.put("c", 300);
+        scores.put("d", 1000);
+        sut.addBonus(scores, 100);
+        assertEquals(Integer.valueOf(200), scores.get("a"));
+        assertEquals(Integer.valueOf(300), scores.get("b"));
+        assertEquals(Integer.valueOf(400), scores.get("c"));
+        assertEquals(Integer.valueOf(1100), scores.get("d"));
+        assertEquals(4, scores.size());
     }
 }
