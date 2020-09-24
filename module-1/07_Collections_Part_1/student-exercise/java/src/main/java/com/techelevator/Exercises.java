@@ -58,11 +58,13 @@ public class Exercises {
 	 arrayInt2ListDouble( {84, 99, 3285, 13, 877} ) -> [42, 49.5, 1642.5, 6.5, 438.5]
 	 */
 	public List<Double> arrayInt2ListDouble(int[] intArray) {
+		double[] intToDouble = new double[intArray.length];
+		for (int i = 0; i <intArray.length; i++) {
+			intToDouble[i] = intArray[i/2];
 
-
-		return null;
+		} List<Double> result = new ArrayList<Double>(); {
+	} return result;
 	}
-
 	/*
 	 Given a List of Integers, return the largest value.
 	 findLargest( [11, 200, 43, 84, 9917, 4321, 1, 33333, 8997] ) -> 33333
@@ -80,10 +82,14 @@ public class Exercises {
 	 oddOnly( {734, 233, 782, 811, 3, 9999} ) -> [233, 811, 3, 9999]
 	 */
 	public List<Integer> oddOnly(Integer[] integerArray) {
+		List<Integer> oddNumbers = new ArrayList<Integer>();
+		for (int i = 0; i < integerArray.length; i++) {
+			if (integerArray[i] % 2 != 0) {
+				oddNumbers.add(integerArray[i]);
+			}
 
-		return null;
+		} return oddNumbers;
 	}
-
 	/*
 	 Given a List of Integers, and an int value, return true if the int value appears two or more times in
 	 the list.
