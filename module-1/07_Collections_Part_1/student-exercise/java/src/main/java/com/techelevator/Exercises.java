@@ -121,9 +121,23 @@ public class Exercises {
 	 equals "1")
 	 */
 	public List<String> fizzBuzzList(Integer[] integerArray) {
+		List<String> result = new ArrayList<>();
 
+		for (Integer myInt : integerArray) {
+			boolean isMultiple3 = myInt % 3 == 0;
+			boolean isMultiple5 = myInt % 5 == 0;
+			if (isMultiple3 && isMultiple5) {
+				result.add("FizzBuzz");
+			} else if (isMultiple3) {
+				result.add("Fizz");
+			} else if (isMultiple5) {
+				result.add("Buzz");
+			} else {
+				result.add(myInt.toString());
+			}
 
-		return null;
+		}
+		return result;
 	}
 
 	/*
