@@ -84,17 +84,32 @@ public class Lecture {
 
 	//11. countTrues([false,true,true,false,true]) -> 3
 	public int countTrues(List<Boolean> answers) {
-		return -1;
+		int result = 0;
+		for (Boolean answer : answers) {
+			if (answer == true) {
+				result++;
+			}
+		}
+		return result;
 	}
 
 	//12. incrementAll([100, 17, 33]) -> [101, 18, 34]
 	public List<Integer> incrementAll(List<Integer> numbers) {
-		return null;
+		List<Integer> result = new ArrayList<>();
+		for (Integer number : numbers) {
+			result.add(number + 1);
+		}
+		return result;
 	}
 
 	//13. echo(["Tech","Elevator"]) -> ["Tech","Tech","Elevator","Elevator"]
 	public List<String> echo(List<String> words) {
-		return null;
+		List<String> result = new ArrayList<>();
+		for (String word : words) {
+			result.add(word);
+			result.add(word);
+		}
+		return result;
 	}
 
 }
