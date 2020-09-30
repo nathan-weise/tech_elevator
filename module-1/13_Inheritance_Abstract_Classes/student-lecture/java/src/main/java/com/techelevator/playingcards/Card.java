@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class Card {
 
-    private static final String DEFAULT_SUIT = "Spades";
+    private static final Suit DEFAULT_SUIT = Suit.SPADES;
     private static final String DEFAULT_RANK = "Ace";
 
     private static int createdCount;
 
-    private final String suit;
+    private final Suit suit;
     private final String rank;
     private boolean faceUp = false;
 
@@ -34,14 +34,15 @@ public class Card {
     }
 
     public Card() {
+
         this(DEFAULT_SUIT, DEFAULT_RANK);
     }
 
-    public Card(String suit) {
+    public Card(Suit suit) {
         this(suit, DEFAULT_RANK);
     }
 
-    public Card(String suit, String rank) {
+    public Card(Suit suit, String rank) {
         this.suit = suit;
         this.rank = rank;
 
@@ -53,7 +54,7 @@ public class Card {
     }
 
 
-    public String getSuit() {
+    public Suit getSuit() {
         return suit;
     }
 
@@ -66,14 +67,17 @@ public class Card {
 
 
     public boolean isFaceUp() {
+
         return faceUp;
     }
 
     public void setFaceUp(boolean faceUp) {
+
         this.faceUp = faceUp;
     }
 
     public String getName() {
+
         return getRank() + " of " + getSuit();
     }
 

@@ -3,6 +3,7 @@ package com.techelevator.farm;
 public class Chicken extends FarmAnimal {
 
 	public Chicken() {
+
 		super("Chicken", "cluck!");
 	}
 
@@ -10,4 +11,8 @@ public class Chicken extends FarmAnimal {
 		System.out.println("Chicken laid an egg!");
 	}
 
+	@Override
+	public String eat() {
+		return "eating the chicken kibble";
+	}
 }

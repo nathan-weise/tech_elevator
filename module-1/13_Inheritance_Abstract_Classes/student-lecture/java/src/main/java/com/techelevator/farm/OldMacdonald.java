@@ -3,8 +3,14 @@ package com.techelevator.farm;
 public class OldMacdonald {
 	public static void main(String[] args) {
 
+		Pig wilbur = new Pig();
+		wilbur.setAsleep(true);
+
+		Cat nyanCat = new Cat();
+		nyanCat.setAsleep(false);
+
 		Singable[] singables =
-				new Singable[] {new Cow(), new Chicken(), new Pig(), new Tractor()};
+				new Singable[] {new Cow(), new Chicken(), wilbur, new Tractor(), nyanCat};
 
 		for (Singable singable : singables) {
 			String name = singable.getName();
@@ -25,5 +31,7 @@ public class OldMacdonald {
 			System.out.println("Step right up and get your " + sellable.getName());
 			System.out.println("Only $" + sellable.getPrice());
 		}
+		FarmAnimal animal = new Cow();
+		animal = new Chicken();
 	}
 }
