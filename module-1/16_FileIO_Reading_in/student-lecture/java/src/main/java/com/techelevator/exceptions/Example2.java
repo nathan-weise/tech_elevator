@@ -24,6 +24,8 @@ public class Example2 {
 			e.printStackTrace(); // will print the Exception stacktrace to the terminal
 		}
 
+		System.out.println("Program is still running...");
+
 	}
 	
 	private static void doSomethingDangerous() {

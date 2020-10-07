@@ -6,7 +6,7 @@ public class Example4 {
 		
 		/* we can throw our own Exceptions in response to exceptional cases 
 		 * see the source code of calculateHotelRoomCharges for an example */
-		int nights = -3;
+		int nights = 3;
 		int numberOfGuests = 2;
 		try {
 			double amountOwed = calculateHotelRoomCharges(nights, numberOfGuests);

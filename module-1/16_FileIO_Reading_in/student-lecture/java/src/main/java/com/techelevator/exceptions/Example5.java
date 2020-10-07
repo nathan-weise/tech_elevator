@@ -13,6 +13,7 @@ public class Example5 {
 			System.out.println("new balance is "+newBalance);
 		} catch(OverdraftException e) {
 			System.out.println("Unfortunately, you can't withdraw more money than you have in the bank...");
+			System.out.println(e.getMessage());
 			System.out.println("The requested amount would overdraw the account by "+e.getOverdraftAmount());
 		}
 		
