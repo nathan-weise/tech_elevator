@@ -1,9 +1,12 @@
 package com.techelevator;
 
 import com.techelevator.search.SearchDomain;
+import com.techelevator.search.SearchDomainException;
 import com.techelevator.search.SearchEngine;
 import com.techelevator.view.MenuDrivenCLI;
 import com.techelevator.view.BasicUI;
+
+import java.util.Scanner;
 
 
 public class Application {
@@ -33,24 +36,39 @@ public class Application {
 	public void run() {
 		// Step Two: Log the start of the application.
 		//
+		TELog.log("Search application started");
 
 		prepareDomainAndEngine();
 
-		while (true) {
+		boolean continueLoop = true;
+
+		while (continueLoop) {
 			String selection = ui.promptForSelection(MAIN_MENU_OPTIONS);
 			if (selection.equals(MENU_OPTION_LIST_INDEXED_FILES)) {
 				displayIndexedFiles();
 			} else if (selection.equals(MENU_OPTION_PERFORM_SAMPLE_SEARCH)) {
 				handleSearchMenu();
 			}
+			Scanner userInput = new Scanner(System.in);
+			System.out.println("Would you like to continue? ");
+			String continueYN = userInput.nextLine();
+			if (continueYN.equals("N")) {
+				continueLoop = false;
+			}
+
 		}
 	}
 
 	private void prepareDomainAndEngine() {
 		// Step Four: Instantiate a Search Domain
 		//
-		searchDomain = null;
-		searchEngine = null;
+		try {
+			searchDomain = new SearchDomain("data");
+			TELog.log(searchDomain.toString());
+			searchEngine = null;
+		} catch (SearchDomainException e) {
+			ui.output("Couldn't create search domain.");
+		}
 	}
 
 	private void displayIndexedFiles() {

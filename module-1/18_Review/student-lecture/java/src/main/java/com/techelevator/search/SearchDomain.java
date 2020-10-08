@@ -1,5 +1,9 @@
 package com.techelevator.search;
 
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +55,15 @@ public class SearchDomain {
 	private List<String> buildDomain() throws SearchDomainException {
 		List<String> files = new ArrayList<>();
 		// Step Three: Complete the buildDomain method
+		Path dir = Paths.get(folder);
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir)) {
+			for (Path file: stream) {
+				files.add(file.toString());
+			}
+
+		} catch (Exception e) {
+			throw new SearchDomainException(e.getMessage());
+		}
 
 
 			

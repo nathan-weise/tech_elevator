@@ -1,12 +1,9 @@
 package com.techelevator.search;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class SearchEngine {
 
@@ -20,6 +17,17 @@ public class SearchEngine {
 	
 	public void indexFiles() throws SearchEngineException, Exception {
 		// Step Five: Index files
+		List<String> filenames = sd.getFiles();
+		for (int i = 0; i < filenames.size(); i++) {
+			Path file = Paths.get(filenames.get(i));
+			try (Scanner input = new Scanner(file)) {
+				while (input.hasNextLine()) {
+					indexedWords(i, input.nextLine());
+				}
+			} catch (IOException e) {
+				throw new SearchEngineException(e.getMessage));
+			}
+		}
 
 
 	}
