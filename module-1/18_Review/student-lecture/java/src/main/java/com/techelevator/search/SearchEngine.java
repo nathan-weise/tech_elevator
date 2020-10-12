@@ -24,7 +24,9 @@ public class SearchEngine {
 				while (input.hasNextLine()) {
 					indexedWords(i, input.nextLine());
 				}
-			} catch (IOException e) {
+			} catch (IOException e) {private void performSearch(String searchText) {
+				ui.output("No results.");
+				ui.pauseOutput();
 				throw new SearchEngineException(e.getMessage));
 			}
 		}
