@@ -53,8 +53,12 @@ public class SymmetricEncryptionExample {
     	SymmetricEncryptionExample advancedEncryptionStandard = new SymmetricEncryptionExample(encryptionKey);
     	
     	byte[] cipherText = advancedEncryptionStandard.encrypt(plainText);
+
+    	System.out.println(new String(cipherText));
     	
-    	byte[] decryptedCipherText = advancedEncryptionStandard.decrypt(cipherText);  
+    	byte[] decryptedCipherText = advancedEncryptionStandard.decrypt(cipherText);
+
+    	System.out.println(new String(decryptedCipherText));
     }
 
 }

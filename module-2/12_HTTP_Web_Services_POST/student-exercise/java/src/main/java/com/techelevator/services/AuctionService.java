@@ -69,18 +69,39 @@ public class AuctionService {
     }
 
     public Auction add(String auctionString) {
-        // place code here
-        return null;
+        Auction auction = makeAuction(auctionString);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> entity = new HttpEntity<>(auction, headers);
+        try {
+            return restTemplate.postForObject(baseUrl, entity, Auction.class);
+        } catch (ResourceAccessException | RestClientResponseException e) {
+            return null;
+        }
     }
+
 
     public Auction update(String auctionString) {
-        // place code here
-        return null;
+        Auction auction = makeAuction(auctionString);
+        HttpHeaders headers = new HttpHeaders(); // adds to API
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Auction> entity = new HttpEntity<>(auction, headers); // package them into entity
+        try {
+            restTemplate.put(baseUrl + "/" + auction.getId(), entity);
+            return auction;
+        } catch (ResourceAccessException | RestClientResponseException e) {
+            return null;
+        }
     }
-
+        
     public boolean delete(int id) {
-        // place code here
-        return false;
+        try {
+            restTemplate.delete(baseUrl + "/" + id);
+
+        } catch (RestClientResponseException | ResourceAccessException e) {
+            return false;
+        }
+        return true;
     }
 
     private HttpEntity<Auction> makeEntity(Auction auction) {

@@ -2,6 +2,9 @@ package com.techelevator.hotels.services;
 
 import com.techelevator.hotels.models.Hotel;
 import com.techelevator.hotels.models.Reservation;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -25,20 +28,36 @@ public class HotelService {
    * @return Reservation
    */
   public Reservation addReservation(String newReservation) {
-    // TODO: Implement method
-    return null;
+    Reservation reservation = makeReservation(newReservation);
+    HttpHeaders headers = new HttpHeaders(); // adds to API
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<Reservation> entity = new HttpEntity<>(reservation, headers); // package them into entity
+    try {
+      return restTemplate.postForObject(baseUrl + "reservations", entity, Reservation.class);
+    } catch (ResourceAccessException | RestClientResponseException e) {
+      return null;
+    }
   }
+
 
   /**
    * Updates an existing reservation by replacing the old one with a new
    * reservation
    *
-   * @param CSV
+   * @param csv
    * @return
    */
-  public Reservation updateReservation(String CSV) {
-    // TODO: Implement method
-    return null;
+  public Reservation updateReservation(String csv) {
+    Reservation reservation = makeReservation(csv);
+    HttpHeaders headers = new HttpHeaders(); // adds to API
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    HttpEntity<Reservation> entity = new HttpEntity<>(reservation, headers); // package them into entity
+    try {
+      restTemplate.put(baseUrl + "reservations/" + reservation.getId(), entity);
+      return reservation;
+    } catch (ResourceAccessException | RestClientResponseException e) {
+      return null;
+    }
   }
 
   /**
@@ -47,7 +66,18 @@ public class HotelService {
    * @param id
    */
   public void deleteReservation(int id) {
-    // TODO: Implement method
+    try {
+      restTemplate.delete(baseUrl + "reservations/" + id);
+
+    } catch (ResourceAccessException e) {
+      System.out.println("Couldn't connect to server");
+    } catch (RestClientResponseException e) {
+      if (e.getRawStatusCode() == 404) {
+        System.out.println("That reservation doesn't exist");
+      } else {
+        System.out.println("Something went wrong. Couldn't delete.");
+      }
+    }
   }
 
   /* DON'T MODIFY ANY METHODS BELOW */

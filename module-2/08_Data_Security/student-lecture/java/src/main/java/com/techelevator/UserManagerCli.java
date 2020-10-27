@@ -22,7 +22,7 @@ public class UserManagerCli {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setUrl("jdbc:postgresql://tecincy-david-db-do-user-8198664-0.a.db.ondigitalocean.com:25060/user-manager");
         dataSource.setUsername("student");
-        dataSource.setPassword("");
+        dataSource.setPassword(System.getenv("DB_PASSWORD"));
 
         UserManagerCli application = new UserManagerCli(dataSource);
         application.run();

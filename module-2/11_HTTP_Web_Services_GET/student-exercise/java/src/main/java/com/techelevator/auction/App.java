@@ -21,23 +21,39 @@ public class App {
     }
 
     public Auction[] listAllAuctions() {
-        // api code here
-        return null;
+        Auction[] auctionList = restTemplate.getForObject(API_URL, Auction[].class);
+        return auctionList;
     }
 
     public Auction listDetailsForAuction() {
-        // api code here
-        return null;
+        try {
+        System.out.println("Number of auction for details: ");
+        String userInput = scanner.nextLine();
+        int userInputAsInt = Integer.parseInt(userInput);
+        Auction auction = restTemplate.getForObject(API_URL + "/" + userInputAsInt, Auction.class);
+        return auction;
+    } catch (NumberFormatException e) {
+            System.out.println("Not a valid auction number");
+        } return null;
     }
 
     public Auction[] findAuctionsSearchTitle() {
-        // api code here
-        return null;
+        System.out.println("Name of auction contains: ");
+        String userInput = scanner.nextLine();
+        Auction[] auction = restTemplate.getForObject(API_URL + "?title_like=" + userInput, Auction[].class);
+        return auction;
     }
 
     public Auction[] findAuctionsSearchPrice() {
-        // api code here
-        return null;
+        try {
+            System.out.println("Price of auction less than: ");
+            String userInput = scanner.nextLine();
+            Double userInputAsDouble = Double.parseDouble(userInput);
+            Auction[] auction = restTemplate.getForObject(API_URL + "?currentBid_lte=" + userInputAsDouble, Auction[].class);
+            return auction;
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     private void run() {

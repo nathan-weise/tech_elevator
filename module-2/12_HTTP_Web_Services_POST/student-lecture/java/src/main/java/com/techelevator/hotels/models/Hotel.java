@@ -50,4 +50,21 @@ public class Hotel {
     public String getCoverImage() {
         return coverImage;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
+    public void setRoomsAvailable(int roomsAvailable) {
+        this.roomsAvailable = roomsAvailable;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
+    }
 }
+
