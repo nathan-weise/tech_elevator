@@ -1,21 +1,41 @@
 package com.techelevator.reservations.models;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import com.techelevator.reservations.dao.HotelDAO;
+import com.techelevator.reservations.dao.MemoryHotelDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.constraints.*;
 
 public class Reservation {
 
+    @Autowired
+    private HotelDAO hotelDAO;
+
     private int id;
+    @Min(value = 1, message = "Hotel ID needed.")
     private int hotelID;
+    @NotBlank(message = "The fullName field is required.")
     private String fullName;
+    @NotBlank(message = "Check in date needed.")
     private String checkinDate;
+    @NotBlank(message = "Check out date needed.")
     private String checkoutDate;
+    @Min(value = 1, message = "Why zero?")
+    @Max(value = 5, message = "No parties bro.")
     private int guests;
 
-    public Reservation() {
+    @AssertTrue(message = "Hotel doesn't exist.")
+    private boolean getHotelIdIsValid() {
+        for (Hotel hotel : hotelDAO.list()) {
+            if (hotel.getId() == hotelID) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public Reservation() {
+        this.hotelDAO = new MemoryHotelDAO();
     }
 
     public Reservation(int id, int hotelID, String fullName, String checkinDate, String checkoutDate, int guests) {
