@@ -16,7 +16,7 @@ public interface ReservationDAO {
 
     Reservation create(Reservation reservation, int hotelID) throws HotelNotFoundException;
 
-    Reservation update(Reservation reservation, int id) throws ReservationNotFoundException;
+    Reservation update(Reservation reservation, int id) throws ReservationNotFoundException, HotelNotFoundException;
 
     void delete(int id) throws ReservationNotFoundException;
 

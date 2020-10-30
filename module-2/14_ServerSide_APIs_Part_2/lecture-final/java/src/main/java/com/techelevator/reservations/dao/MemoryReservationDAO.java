@@ -13,6 +13,8 @@ import com.techelevator.reservations.exception.ReservationNotFoundException;
 import com.techelevator.reservations.models.Hotel;
 import com.techelevator.reservations.models.Reservation;
 
+import javax.validation.constraints.AssertTrue;
+
 @Component
 public class MemoryReservationDAO implements ReservationDAO {
 
@@ -63,15 +65,30 @@ public class MemoryReservationDAO implements ReservationDAO {
         throw new ReservationNotFoundException();
     }
 
+    private boolean hotelIdIsValid(int hotelID) {
+        for (Hotel hotel : hotelDAO.list()) {
+            if (hotel.getId() == hotelID) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
-    public Reservation create(Reservation reservation, int hotelID) {
+    public Reservation create(Reservation reservation, int hotelID) throws HotelNotFoundException {
+        if (!hotelIdIsValid(reservation.getHotelID())) {
+            throw new HotelNotFoundException();
+        }
         reservation.setId(getMaxIdPlusOne());
         reservations.add(reservation);
         return reservation;
     }
 
     @Override
-    public Reservation update(Reservation reservation, int id) throws ReservationNotFoundException {
+    public Reservation update(Reservation reservation, int id) throws ReservationNotFoundException, HotelNotFoundException {
+        if (!hotelIdIsValid(reservation.getHotelID())) {
+            throw new HotelNotFoundException();
+        }
         Reservation result = reservation;
         boolean finished = false;
 

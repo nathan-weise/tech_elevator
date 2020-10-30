@@ -134,7 +134,7 @@ public class HotelController {
 
     @PutMapping("/reservations/{id}")
     public Reservation updateReservation(@PathVariable int id,
-                                         @Valid @RequestBody Reservation updatedReservation) throws ReservationNotFoundException{
+                                         @Valid @RequestBody Reservation updatedReservation) throws ReservationNotFoundException, HotelNotFoundException {
         return reservationDAO.update(updatedReservation, id);
     }
 
