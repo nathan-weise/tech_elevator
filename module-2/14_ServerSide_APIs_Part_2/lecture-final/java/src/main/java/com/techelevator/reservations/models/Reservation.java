@@ -1,14 +1,8 @@
 package com.techelevator.reservations.models;
 
-import com.techelevator.reservations.dao.HotelDAO;
-import com.techelevator.reservations.dao.MemoryHotelDAO;
-
-
 import javax.validation.constraints.*;
 
 public class Reservation {
-
-    private HotelDAO hotelDAO;
 
     private int id;
     @Min(value = 1, message = "The hotelID field is required.")
@@ -23,19 +17,8 @@ public class Reservation {
     @Max(value = 5, message = "The maximum number of guests is 5.")
     private int guests;
 
-    @AssertTrue(message = "That hotel id doesn't exist.")
-    private boolean getHotelIdIsValid() {
-        for (Hotel hotel : hotelDAO.list()) {
-            if (hotel.getId() == hotelID) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     public Reservation() {
-        this.hotelDAO = new MemoryHotelDAO();
     }
 
     public Reservation(int id, int hotelID, String fullName, String checkinDate, String checkoutDate, int guests) {
