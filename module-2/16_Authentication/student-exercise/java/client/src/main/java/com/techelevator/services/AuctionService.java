@@ -23,7 +23,8 @@ public class AuctionService {
     public Auction[] getAll() throws AuctionServiceException {
         Auction[] auctions = null;
         try {
-            // send request here
+            ResponseEntity<Auction[]> auction = restTemplate.exchange(baseUrl + "auctions", HttpMethod.GET, makeAuthEntity(), Auction[].class);
+            auctions = auction.getBody();
         } catch (RestClientResponseException ex) {
             throw new AuctionServiceException(ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString());
         }

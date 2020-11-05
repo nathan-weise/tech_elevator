@@ -4,6 +4,7 @@ import com.techelevator.auctions.DAO.AuctionDAO;
 import com.techelevator.auctions.exception.AuctionNotFoundException;
 import com.techelevator.auctions.model.Auction;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,9 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
+
 @RestController
+@PreAuthorize("isAuthenticated()")
 @RequestMapping("/auctions")
 public class AuctionController {
 
@@ -21,6 +24,7 @@ public class AuctionController {
         this.dao = dao;
     }
 
+    @PreAuthorize("permitAll")
     @RequestMapping( path = "", method = RequestMethod.GET)
     public List<Auction> list(@RequestParam(defaultValue = "", name = "title_like") String searchTerm,
                               @RequestParam(defaultValue = "0", name = "currentBid_lte") double maxPrice) {
@@ -40,17 +44,20 @@ public class AuctionController {
         return dao.get(id);
     }
 
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping( path = "", method = RequestMethod.POST)
     public Auction create(@Valid @RequestBody Auction auction) {
         return dao.create(auction);
     }
 
+    @PreAuthorize("hasAnyRole('CREATOR', 'ADMIN')")
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public Auction update(@Valid @RequestBody Auction auction, @PathVariable int id) throws AuctionNotFoundException {
         return dao.update(auction, id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable int id) throws AuctionNotFoundException {
@@ -58,8 +65,9 @@ public class AuctionController {
     }
 
     @RequestMapping( path = "/whoami")
-    public String whoAmI() {
-        return "";
+    public String whoAmI(Principal principal) {
+        String string = principal.getName();
+        return string;
     }
 
 }
