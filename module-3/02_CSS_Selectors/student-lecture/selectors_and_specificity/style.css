@@ -192,3 +192,36 @@ footer a:link, footer a:visited {
 	width: 148px; 
 	height: 110px;
 	}
+
+	
+div#zen-summary {
+	color: orange;
+}
+
+#zen-summary {
+	color: aquamarine;
+}
+
+.big {
+	font-size: 40px;
+}
+
+[role] {
+	background-color: gold;
+}
+
+* {
+	border: 1px solid red
+}
+
+p+p {
+	background-color: lightsalmon;
+}
+
+p:hover {
+	background-color: lime;
+}
+
+div:empty {
+	border: 5px solid black;
+}

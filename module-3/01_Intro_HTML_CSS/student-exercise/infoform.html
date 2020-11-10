@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Form</title>
+
+    <link rel="stylesheet" href="/form.css">
+</head>
+
+<body>
+    <h1 style="color: silver;">The Worst Form Ever</h1>
+    <form action="https://httpbin.org/post" method="POST">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" required/>
+        </div>
+        <div>
+            <label for="emailAddress">Email:</label>
+            <input type="email" name="emailAddress" required/>
+        </div>
+        <div>
+            <label for="DOB">Date of Birth:</label>
+            <input type="date" name="DOB" />
+        </div>
+        <div>
+            <label for="favoriteColor">Favorite Color:</label>
+            <input type="color" name="favoriteColor" />
+        </div>
+        <div>
+            <label for="favoriteNumber">Favorite Number:</label>
+            <input type="number" name="favoriteNumber" />
+        </div>
+        <div>
+            <label for="confirmData">Confirm Data:</label>
+            <input type="checkbox" name="confirmData" />
+        </div>
+        <button style="background-color: black; color: turquoise">Submit</button>
+
+    </form>
+</body>
+</html>

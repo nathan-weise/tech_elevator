@@ -1,0 +1,9 @@
+body {
+    background-color: tomato;
+    color: green;
+    font-family: fantasy;
+}
+
+input {
+    margin-bottom: 5px;
+}
