@@ -7,6 +7,8 @@ body {
 
 .container {
   background-color: #F0F0F0;
+  display: flex;
+  flex-flow: wrap;
 }
 
 .box {
@@ -21,4 +23,5 @@ body {
 .box:nth-child(2),
 .box:nth-child(4) {
   background-color: #005270;
+  flex-grow: 2;
 }

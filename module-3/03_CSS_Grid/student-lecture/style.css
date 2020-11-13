@@ -36,6 +36,12 @@ aside#upcoming-events {
     padding-right: 10px;
 }
 
+@media screen and (max-width:768px) {
+    aside#upcoming-events {
+        text-align: center;
+    }
+}
+
 footer {
     font-size: 0.75em;
     padding: 10px;;

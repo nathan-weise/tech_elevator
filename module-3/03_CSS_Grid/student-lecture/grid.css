@@ -1,0 +1,75 @@
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-areas:
+    "header header header"
+    "left  middle  right"
+    "footer footer footer";
+    height: 100vh;
+    grid-gap: 10px;
+
+}
+
+header {
+    grid-area: header;
+}
+
+#menu-nav {
+    grid-area: left;
+}
+
+main {
+    grid-area: middle;
+}
+
+aside {
+    grid-area: right;
+    align-self: center;
+    justify-self: center;
+}
+
+footer {
+    grid-area: footer;
+}
+
+#menu-nav > ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "breakfast lunch"
+    "dinner    dinner"
+    "dessert    beverages";
+}
+
+#breakfast {
+    grid-area: breakfast;
+}
+
+#lunch {
+    grid-area: lunch;
+}
+
+#dinner {
+    grid-area: dinner;
+}
+
+#menu-nav > ul li:nth-child(4) {
+    grid-area: dessert;
+}
+
+#menu-nav > ul li:last-child {
+    grid-area: beverages;
+}
+
+@media screen and (max-width: 768px) {
+
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "header"
+        "left"
+        "middle"
+        "right"
+        "footer";
+    }
+}
