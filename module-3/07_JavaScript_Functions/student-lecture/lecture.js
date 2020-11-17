@@ -27,6 +27,9 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
+function multiplyTogether(firstParameter, secondParameter) {
+  return firstParameter * secondParameter;
+}
 
 /**
  * This version makes sure that no parameters are ever missing. If
@@ -38,9 +41,11 @@ function printToConsole(value) {
  * @param {number} [firstParameter=0] the first parameter to multiply
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
+function multiplyNoUndefined(firstParameter = 0, secondParameter = 0) {
+  return firstParameter * secondParameter;
+}
 
 
- 
 /**
  * Functions can return earlier before the end of the function. This could be useful
  * in circumstances where you may not need to perform additional instructions or have to
@@ -54,7 +59,7 @@ function printToConsole(value) {
 function returnBeforeEnd(firstParameter, secondParameter) {
   console.log("This will always fire.");
 
-  if (firstParameter == 0) {
+  if (firstParameter === 0) {
     console.log("Returning secondParameter times two.");
     return secondParameter * 2;
   }
@@ -87,9 +92,98 @@ function scopeTest() {
   }
 }
 
+/**
+ * This function creates a sentance from a user's information.
+ * This will be displayed on the profile page.
+ * 
+ * @param {string} name - person's full name.
+ * @param {number} age - person's age in years. 
+ * @param {string[]} listOfQuirks - list of characteristics. 
+ * @param {string[]} separator - used to join all information in output.
+ * @returns {string}
+ */
 function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
+}
+
+/**
+ * 
+ * @param {number} n 
+ */
+
+function logTimesTwo(n) {
+  console.log(n * 2)
+}
+
+function imperativeForEach() {
+  const myArray = [3, 2, 9, 6, 7, 9, 5];
+
+  for (let num of myArray) {
+    logTimesTwo(num);
+  }
+}
+
+function declarativeForEach() {
+  const myArray = [3, 2, 9, 6, 7, 9, 5];
+
+  myArray.forEach(logTimesTwo);
+  myArray.forEach(function (n) { console.log(n * 2); })
+  myArray.forEach((n) => { console.log(n * 2); })
+  myArray.forEach(n => console.log(n * 2));
+}
+
+function isEven(num) {
+  return num % 2 === 0;
+}
+
+function filterDemo() {
+  const myArray = [3, 2, 9, 6, 7, 9, 5];
+
+  //return myArray.filter(isEven);
+  //return myArray.filter(num => {return num % 2 === 0;});
+  return myArray.filter(num => num % 2 === 0);
+}
+
+function mapDemo() {
+  const myArray = ['red', 'blue', 'green'];
+
+  return myArray.map(str => str.substring(1));
+}
+
+function mapWithNumbers() {
+const myArray = [3, 2, 9, 6, 7, 9, 5];
+
+return myArray.map(n => n + 1);
+}
+
+function mapWithObjects() {
+  const customers = [
+    {name: 'Fred', amountSpent: 1000},
+    {name: 'Mary', amountSpent: 500},
+    {name: 'Sally', amountSpent: 2500}
+  ];
+
+  //return customers.map(c => c.name)
+  return customers.filter(c => c.amountSpent >= 1000).map(c => c.name);
+
+}
+
+function reduceDemo() {
+  const myArray = [3, 2, 9, 6, 7, 9, 5];
+
+  return myArray.reduce((total, num) => total + num);
+}
+
+function reduceWithObjects() {
+  const customers = [
+    {name: 'Fred', amountSpent: 1000},
+    {name: 'Mary', amountSpent: 500},
+    {name: 'Sally', amountSpent: 2500}
+  ];
+
+  return customers.reduce((total, customer) => total + customer.amountSpent, 0);
+
 }
 
 /**
@@ -100,7 +194,7 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @returns {number} sum of all the numbers
  */
 function sumAllNumbers(numbersToSum) {
-  return 0;
+  return numbersToSum.reduce((sum, n) => sum + n);
 }
 
 /**
@@ -112,5 +206,5 @@ function sumAllNumbers(numbersToSum) {
  *   multiples of 3
  */
 function allDivisibleByThree(numbersToFilter) {
-  return numbersToFilter;
+  return numbersToFilter.filter(x => x % 3 === 0);
 }
