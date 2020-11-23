@@ -1,0 +1,36 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    --grid-size: 1;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-size), 1fr);
+    grid-template-rows: repeat(var(--grid-size), 1fr);
+    height: 80vh;
+    width: 80vw;
+    border: 3px solid black;
+}
+
+div:nth-child(even) {
+    background-color: black;
+}
+
+div {
+    font-size: 7vmin;
+    text-align: center;
+    justify-content: center;
+}

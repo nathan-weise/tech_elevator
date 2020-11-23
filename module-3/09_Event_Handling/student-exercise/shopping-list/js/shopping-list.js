@@ -39,5 +39,41 @@ function displayGroceries() {
   });
 }
 
-setPageTitle();
-displayGroceries();
+document.addEventListener('DOMContentLoaded', e => {
+  setPageTitle();
+  displayGroceries();
+
+  const items = document.querySelectorAll('li');
+  items.forEach(e => {
+    e.addEventListener('click', (event) => {
+      event.target.classList.add('completed');
+    });
+    e.addEventListener('dblclick', (event) => {
+      event.target.classList.remove('completed');
+    });
+  });
+
+  const markAllButton = document.getElementById('toggleAll');
+  const allItems = document.querySelector('ul');
+
+  markAllButton.addEventListener('click', e => {
+    e.preventDefault();
+
+    if (allItemsIncomplete) {
+      items.forEach(x => {
+        x.classList.add('completed');
+      });
+      e.target.innerText = 'Mark All Incomplete';
+      allItemsIncomplete = !allItemsIncomplete
+    } else if (!allItemsIncomplete) {
+      items.forEach(x => {
+        x.classList.remove('completed');
+      });
+      e.target.innerText = 'Mark All Complete';
+      allItemsIncomplete = !allItemsIncomplete
+    }
+  });
+});
+
+
+

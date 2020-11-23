@@ -70,81 +70,16 @@ function displayReviews() {
 
   reviews.forEach(review => {
 
-    const container = document.createElement('div');
+   const template = document.getElementById('review-template');
+   const container = template.content.cloneNode(true);
+   container.querySelector('h4').innerText = review.reviewer;
+   container.querySelector('h3').innerText = review.title;
+   container.querySelector('p').innerText = review.review;
 
-    //container.setAttribute('class', 'review');
-    container.classList.add('review');
-
-    addReviewer(container, review.reviewer);
-
-    addRating(container, review.rating);
-
-    addTitle(container, review.title);
-
-    addReview(container, review.review);
-
-    main.appendChild(container);
+   main.appendChild(container);
 
   });
 
-}
-
-/**
- * I will creating a new h4 element with the name of the reviewer and append it to
- * the parent element that is passed to me.
- *
- * @param {HTMLElement} el: The element to append the reviewer to
- * @param {string} name The name of the reviewer
- */
-function addReviewer(parent, name) {
-
-  const h4 = document.createElement('h4');
-  h4.innerText = name;
-  parent.appendChild(h4);
-
-}
-
-/**
- * I will add the rating div along with a star image for the number of ratings 1-5
- * @param {HTMLElement} parent
- * @param {Number} numberOfStars
- */
-function addRating(parent, numberOfStars) {
-  const div = document.createElement('div');
-  div.classList.add('rating');
-
-  for (let i = 0; i < numberOfStars; i++) {
-    const star = document.createElement('img');
-    star.classList.add('ratingStar');
-    //star.setAttribute('src', 'img/star.png');
-    star.src = 'img/star.png';
-    div.appendChild(star);
-  }
-
-  parent.appendChild(div);
-
-}
-
-/**
- * I will add an h3 element along with the review title
- * @param {HTMLElement} parent
- * @param {string} title
- */
-function addTitle(parent, title) {
-  const h3 = document.createElement('h3');
-  h3.innerText = title;
-  parent.appendChild(h3);
-}
-
-/**
- * I will add the product review
- * @param {HTMLElement} parent
- * @param {string} review
- */
-function addReview(parent, review) {
-  const p = document.createElement('p');
-  p.innerText = review;
-  parent.appendChild(p);  
 }
 
 // set the product reviews page title

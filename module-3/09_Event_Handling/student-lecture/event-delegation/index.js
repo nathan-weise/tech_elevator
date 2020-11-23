@@ -1,11 +1,8 @@
 // @ts-nocheck
 
-const items = document.querySelectorAll('li');
-items.forEach(item => {
-  item.addEventListener('click', event => {
-    console.log(item.innerText);
-    event.target.style.backgroundColor = event.target.innerText;
-  });
+const itemList = document.querySelector('ul');
+itemList.addEventListener('click', event => {
+	event.target.style.backgroundColor = event.target.innerText;
 });
 
 function addOrange() {
