@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script src="script.js" defer></script>
+
+    <style>
+        .large {
+            font-size: 4em;
+        }
+
+        .small {
+            font-size: .5em;
+        }
+    </style>
+
+</head>
+<body>
+
+    <main id="myApp">
+
+        <div v-bind:class="size">
+            {{ greeting }}
+
+            <div><div><div>{{ firstName }} {{ lastName }}</div></div></div>
+
+        </div>
+        
+        <div>
+            <input type="text" v-model="firstName">
+        </div>
+
+
+        <div>
+            {{ greeting.substring(1) }}
+
+            <br/>
+
+            {{ 10 > 5 }}
+
+        </div>
+
+        <div v-for="student in students">
+            <p>{{ student }}</p>
+            <img src="https://www.moneyunder30.com/wp-content/uploads/2016/07/171_understanding-student-loan-grace-periods-deferment-and-forbearance-648x364-c-default.jpg" alt="">
+        </div>
+
+
+    </main>
+
+
+    
+</body>
+</html>
