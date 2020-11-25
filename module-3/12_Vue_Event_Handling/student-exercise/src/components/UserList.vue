@@ -52,7 +52,8 @@
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.status }}</td>
           <td>
-            <button class="btnEnableDisable">Enable or Disable</button>
+            <button class="btnEnableDisable" v-on:click="flipStatus(user.id)" v-if="user.status === 'Active'">Disable</button>
+            <button class="btnEnableDisable" v-on:click="flipStatus(user.id)" v-else>Enable</button>
           </td>
         </tr>
       </tbody>
@@ -64,9 +65,9 @@
       <button>Delete Users</button>
     </div>
 
-    <button>Add New User</button>
+    <button v-on:click="showForm = !showForm">Add New User</button>
 
-    <form id="frmAddNewUser">
+    <form id="frmAddNewUser" v-on:submit.prevent="saveUser" v-show="showForm">
       <div class="field">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" />
@@ -83,7 +84,7 @@
         <label for="emailAddress">Email Address:</label>
         <input type="text" name="emailAddress" />
       </div>
-      <button type="submit" class="btn save">Save User</button>
+      <button type="submit" class="btn save" >Save User</button>
     </form>
   </div>
 </template>
@@ -93,6 +94,7 @@ export default {
   name: "user-list",
   data() {
     return {
+      showForm: false,
       filter: {
         firstName: "",
         lastName: "",
@@ -160,7 +162,32 @@ export default {
       ]
     };
   },
-  methods: {},
+  methods: {
+    saveUser() {
+      this.users.push(this.newUser);
+      this.resetForm();
+    },
+    resetForm() {
+      this.newUser = {};
+    },
+    flipStatus(id) {
+      let user = this.getUserById(id);
+
+      if (user.status === 'Active') {
+        user.status = 'Disabled';
+      } else if (user.status === 'Disabled') {
+        user.status = 'Active';
+      }
+    },
+    getUserById(id) {
+      for (let user of this.users) {
+        if (user.id === id) {
+          return user;
+        }
+      } 
+      return null;
+    }
+  },
   computed: {
     filteredList() {
       let filteredUsers = this.users;

@@ -29,7 +29,7 @@ function displayGroceries() {
     
     const container = document.createElement('li');
 
-    container.innterText = item;
+    container.innerText = item;
 
     groceryList.appendChild(container);
 

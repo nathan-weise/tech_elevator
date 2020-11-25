@@ -20,5 +20,5 @@ SELECT added, count(id) FROM items GROUP BY added;
 
 -- Select the cart's username and created date and the item names for all carts created in the month of Sept. 2019
 
-SELECT username, created  FROM carts WHERE created > '2019-08-31' AND created < '2019-10-01'; // could not figure out how to add items becuase there are no connections in the database.
+SELECT username, created  FROM carts WHERE created > '2019-08-31' AND created < '2019-10-01'; // could not figure out how to add items becuase there are no connections in the database.fa
 

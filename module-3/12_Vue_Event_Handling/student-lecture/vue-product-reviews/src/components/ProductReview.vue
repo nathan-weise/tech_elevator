@@ -10,36 +10,68 @@
         Average Rating
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="ratingFilter = 1">
         <span class="amount">{{ numberOf1StarReviews }}</span>
-        1 Star Review{{ numberOfOneStarReviews === 1 ? "" : "s" }}
+        1 Star Review{{ numberOf1StarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="ratingFilter = 2">
         <span class="amount">{{ numberOf2StarReviews }}</span>
-        2 Star Review{{ numberOfTwoStarReviews === 1 ? "" : "s" }}
+        2 Star Review{{ numberOf2StarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="ratingFilter = 3">
         <span class="amount">{{ numberOf3StarReviews }}</span>
-        3 Star Review{{ numberOfThreeStarReviews === 1 ? "" : "s" }}
+        3 Star Review{{ numberOf3StarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="ratingFilter = 4">
         <span class="amount">{{ numberOf4StarReviews }}</span>
-        4 Star Review{{ numberOfFourStarReviews === 1 ? "" : "s" }}
+        4 Star Review{{ numberOf4StarReviews === 1 ? "" : "s" }}
       </div>
 
-      <div class="well">
+      <div class="well" v-on:click="ratingFilter = 5">
         <span class="amount">{{ numberOf5StarReviews }}</span>
-        5 Star Review{{ numberOfFiveStarReviews === 1 ? "" : "s" }}
+        5 Star Review{{ numberOf5StarReviews === 1 ? "" : "s" }}
       </div>
     </div>
+
+    <a href="#" v-on:click.prevent="showForm=true" v-if="!showForm">Show Form</a>
+    <a href="#" v-on:click.prevent="showForm=false" v-else>Hide Form</a>
+
+    <form v-on:submit.prevent="addNewReview" v-show="showForm">
+      <div class="form-element">
+        <label for="reviewer">Name: </label>
+        <input type="text" id="reviewer" v-model.lazy="newReview.reviewer" />
+      </div>
+      <div class="form-element">
+        <label for="title">Title: </label>
+        <input type="text" id="title" v-model.trim="newReview.title" />
+      </div>
+      <div class="form-element">
+        <label for="rating">Rating: </label>
+        <select id="rating" v-model.number="newReview.rating">
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
+      </div>
+      <div class="form-element">
+        <label for="review">Review: </label>
+        <textarea id="review" v-model="newReview.review"></textarea>
+      </div>
+
+      <button type="submit">Add Review</button>
+      <button type="button" v-on:click="resetForm()">Clear Form</button>
+
+    </form>
 
     <div
       class="review"
       v-bind:class="{ favorited: review.favorited }"
-      v-for="review in reviews"
+      v-for="review in filteredReviews"
       v-bind:key="review.id"
     >
       <h4>{{ review.reviewer }}</h4>
@@ -73,6 +105,8 @@ export default {
       description:
         "Host and plan the perfect cigar party for all of your squirrelly friends.",
       newReview: {},
+      showForm: false,
+      ratingFilter: 0,
       reviews: [
         {
           reviewer: "Malcolm Gladwell",
@@ -129,6 +163,9 @@ export default {
     numberOf5StarReviews() {
       return this.countReviews(5);
     },
+    filteredReviews() {
+      return this.reviews.filter(review => this.ratingFilter === 0 || review.rating === this.ratingFilter);
+    }
   },
   methods: {
     countReviews(rating) {
@@ -140,7 +177,33 @@ export default {
       }
       return count;
     },
+    addNewReview() {
+      this.reviews.unshift(this.newReview);
+      this.resetForm();
+    },
+    resetForm() {
+      this.newReview= {};
+    },
+    handleKey(event) {
+      if (event.key === '1') {
+        this.ratingFilter = 1;
+    } else if (event.key === '2') {
+        this.ratingFilter = 2;
+    } else if (event.key === '3') {
+        this.ratingFilter = 3;
+    } else if (event.key === '4') {
+        this.ratingFilter = 4;
+    } else if (event.key === '5') {
+        this.ratingFilter = 5;
+    }
+    }
   },
+  created() {
+    document.body.addEventListener('keyup', this.handleKey);
+  },
+  destroyed() {
+    document.body.removeEventListener('keyup', this.handleKey);
+  }
 };
 </script>
 
