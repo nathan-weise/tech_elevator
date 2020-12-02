@@ -1,0 +1,29 @@
+{
+  "name": "docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "npm-run-all --parallel json-server start",
+    "json-server": "json-server ./db/docs.json",
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "core-js": "^3.8.0",
+    "json-server": "^0.16.3",
+    "vue": "^2.6.12",
+    "vue-router": "^3.4.9"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.9",
+    "@vue/cli-plugin-eslint": "^4.5.9",
+    "@vue/cli-service": "^4.5.9",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.14.0",
+    "eslint-plugin-vue": "^7.1.0",
+    "npm-run-all": "^4.1.5",
+    "vue-template-compiler": "^2.6.12"
+  }
+}
